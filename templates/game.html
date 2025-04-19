@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Tetris</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">MATH TETRIS</h1>
+        <div class="game-info">
+            <div class="player-name">PLAYER: <span>{{ player_name }}</span></div>
+            <div class="score">SCORE: <span id="score">0</span></div>
+            <div class="timer">TIME: <span id="time">0:00</span></div>
+        </div>
+        
+        <div class="game-area">
+            <div class="brick-wall" id="brick-wall">
+                <!-- Options will fall here -->
+            </div>
+            
+            <div class="math-problem-container">
+                <div class="math-problem" id="math-problem"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-over" id="game-over">
+        <div class="game-over-content">
+            <h2>GAME OVER!</h2>
+            <div class="stats">
+                <p>PLAYER: <span id="final-name">{{ player_name }}</span></p>
+                <p>TIME: <span id="final-time">0:00</span></p>
+                <p>SCORE: <span id="final-score">0</span></p>
+            </div>
+            <button onclick="window.location.href='/'">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <audio id="correct-sound" src="{{ url_for('static', filename='sounds/correct.mp3') }}"></audio>
+    <audio id="wrong-sound" src="{{ url_for('static', filename='sounds/wrong.mp3') }}"></audio>
+
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
