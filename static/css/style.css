@@ -1,0 +1,309 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #3498db;
+    --correct-color: #2ecc71;
+    --wrong-color: #e74c3c;
+    --text-color: #ecf0f1;
+    --background-color: #1a1a2e;
+    --brick-color: #e74c3c;
+    --brick-light: #ff6b6b;
+    --game-area-bg: #16213e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-screen {
+    text-align: center;
+    background-color: rgba(26, 26, 46, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 4px solid var(--accent-color);
+    max-width: 500px;
+    width: 90%;
+}
+
+.start-screen h1 {
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 0 var(--primary-color);
+}
+
+.start-screen input {
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    width: 80%;
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--text-color);
+    border: 3px solid var(--accent-color);
+    color: var(--primary-color);
+}
+
+.start-screen button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--correct-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    transition: all 0.3s;
+    box-shadow: 0 5px 0 var(--primary-color);
+}
+
+.start-screen button:hover {
+    background-color: #27ae60;
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 var(--primary-color);
+}
+
+.game-container {
+    width: 100%;
+    height: 100vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-title {
+    color: var(--accent-color);
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    text-shadow: 4px 4px 0 var(--primary-color);
+    letter-spacing: 2px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 800px;
+    margin-bottom: 1rem;
+    background-color: rgba(44, 62, 80, 0.7);
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 3px solid var(--accent-color);
+}
+
+.game-info div {
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+
+.game-info span {
+    color: var(--accent-color);
+}
+
+.game-area {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    height: 70vh;
+    border: 4px solid var(--accent-color);
+    border-radius: 10px;
+    background-color: var(--game-area-bg);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.brick-wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    background-color: rgba(22, 33, 62, 0.5);
+    overflow: hidden;
+}
+
+.math-problem-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(44, 62, 80, 0.7);
+    border-top: 3px solid var(--accent-color);
+}
+
+.math-problem {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 0 var(--primary-color);
+}
+
+.option {
+    position: absolute;
+    width: 70px;
+    height: 40px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 0 var(--primary-color);
+    z-index: 10;
+}
+
+.option:hover {
+    transform: scale(1.05);
+    background-color: #2980b9;
+}
+
+.option.correct {
+    background-color: var(--correct-color);
+    animation: correct 0.5s forwards;
+}
+
+.option.wrong {
+    background-color: var(--wrong-color);
+    animation: wrong 0.5s forwards;
+}
+
+@keyframes correct {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes wrong {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); opacity: 0.5; }
+}
+
+.brick-line {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    background: linear-gradient(to right, var(--brick-color), var(--brick-light));
+    bottom: 0;
+    animation: brickAppear 0.5s ease-out;
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    left: 0;
+}
+
+@keyframes brickAppear {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.game-over {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.game-over-content {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 4px solid var(--accent-color);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.game-over h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    text-shadow: 3px 3px 0 var(--background-color);
+}
+
+.stats {
+    margin: 1.5rem 0;
+}
+
+.stats p {
+    font-size: 1rem;
+    margin: 0.8rem 0;
+    color: var(--text-color);
+}
+
+.stats span {
+    color: var(--accent-color);
+}
+
+.game-over button {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background-color: var(--correct-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    transition: all 0.3s;
+    box-shadow: 0 5px 0 var(--background-color);
+}
+
+.game-over button:hover {
+    background-color: #27ae60;
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 var(--background-color);
+}
+
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 1.8rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .option {
+        width: 60px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+      }
