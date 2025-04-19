@@ -22,7 +22,7 @@ A fun educational game combining math problems with Tetris mechanics. Test your 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/math-tetris.git
+git clone https://github.com/jagadish-uppula/math-tetris.git
 cd math-tetris
 ```
 
