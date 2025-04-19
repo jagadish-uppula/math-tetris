@@ -1,6 +1,9 @@
 # Math Tetris 🎮➗
 
-![Game Screenshot](./screenshot.png)
+![Game Screenshots](./screenshot.jpg)
+![Game Screenshots](./screenshot1.jpg)
+![Game Screenshots](./screenshot2.jpg)
+
 
 A fun educational game combining math problems with Tetris mechanics. Test your math skills as you solve problems to prevent bricks from stacking up!
 
