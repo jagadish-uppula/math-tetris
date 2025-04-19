@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Tetris</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="start-screen">
+        <h1>MATH TETRIS</h1>
+        <form action="/start_game" method="POST">
+            <input type="text" name="player_name" placeholder="ENTER YOUR NAME" required>
+            <button type="submit">START GAME</button>
+        </form>
+    </div>
+</body>
+</html>
