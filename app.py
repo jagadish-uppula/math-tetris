@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import random
 import operator
 from datetime import datetime
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 @app.route('/')
 def index():
@@ -70,6 +70,11 @@ def generate_problem():
         'options': options,
         'answer': answer
     })
+
+# Explicit static file route for Vercel
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
 
 # Vercel compatibility
 if __name__ == '__main__':
