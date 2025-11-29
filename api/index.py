@@ -2,23 +2,17 @@ from flask import Flask, render_template, request, jsonify
 import random
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-# IMPORTANT: Set template + static folder paths correctly for Vercel
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
-
-# Fix for Vercel reverse proxy
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
-
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-
 @app.route("/start_game", methods=["POST"])
 def start_game():
     player_name = request.form.get("player_name")
     return render_template("game.html", player_name=player_name)
-
 
 @app.route("/generate_problem")
 def generate_problem():
@@ -64,23 +58,12 @@ def generate_problem():
     options = [answer]
 
     while len(options) < 4:
-        if isinstance(answer, int):
-            wrong = answer + random.choice([-3, -2, -1, 1, 2, 3])
-        else:
-            wrong = round(answer + random.choice([-0.5, -0.3, -0.1, 0.1, 0.3, 0.5]), 2)
-
+        wrong = answer + random.choice([-3, -2, -1, 1, 2, 3]) if isinstance(answer, int) else round(answer + random.choice([-0.5, -0.3, -0.1, 0.1, 0.3, 0.5]), 2)
         if wrong not in options:
             options.append(wrong)
 
     random.shuffle(options)
+    return jsonify({"problem": problem, "options": options, "answer": answer})
 
-    return jsonify({
-        "problem": problem,
-        "options": options,
-        "answer": answer
-    })
-
-
-# Entry point Vercel needs
 def handler(event, context):
     return app(event, context)
